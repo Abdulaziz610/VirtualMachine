@@ -1,0 +1,14 @@
+
+#!/bin/bash
+
+while true; do
+process_count=$(ps -aef | grep "Watch_Dog.sh" | grep -v "grep" | wc -l)
+if [ "$process_count" -eq 2 ]; then
+echo "Process is running. Monitoring..."
+else
+echo "Process is not running. Starting it..."
+bash "Watch_Dog.sh" &
+fi
+
+sleep 10
+done
